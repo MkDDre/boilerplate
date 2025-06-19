@@ -72,50 +72,49 @@ jobs:
           path: frontend/coverage/
 
   e2e-tests:
-  name: E2E Tests
-  runs-on: ubuntu-latest
-  container: mcr.microsoft.com/playwright:v1.53.1-jammy
+    name: E2E Tests
+    runs-on: ubuntu-latest
+    container: mcr.microsoft.com/playwright:v1.53.1-jammy
 
-  env:
-    HOME: /root
+    env:
+      HOME: /root
 
-  services:
-    docker:
-      image: docker:dind
-      options: --privileged
+    services:
+      docker:
+        image: docker:dind
+        options: --privileged
 
-  steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
 
-    - name: Setup environment and apps
-      run: |
-        apt update -y
-        wget https://download.oracle.com/java/21/latest/jdk-21_linux-x64_bin.deb
-        apt install ./jdk-21_linux-x64_bin.deb
-        apt install -y maven docker-compose-v2
-        docker compose -f api/docker-compose.yaml up --build -d
-        sleep 5
-        cd api
-        mvn clean spring-boot:run -Dspring-boot.run.profiles=test &
-        sleep 30
-        cd ../frontend
-        npm install
-        npm run dev &
-        sleep 30
-        cd ../e2e
-        npm install
+      - name: Setup environment and apps
+        run: |
+          apt update -y
+          wget https://download.oracle.com/java/21/latest/jdk-21_linux-x64_bin.deb
+          apt install ./jdk-21_linux-x64_bin.deb
+          apt install -y maven docker-compose-v2
+          docker compose -f api/docker-compose.yaml up --build -d
+          sleep 5
+          cd api
+          mvn clean spring-boot:run -Dspring-boot.run.profiles=test &
+          sleep 30
+          cd ../frontend
+          npm install
+          npm run dev &
+          sleep 30
+          cd ../e2e
+          npm install
 
-    - name: Run Playwright tests
-      run: |
-        cd e2e
-        npx playwright test
+      - name: Run Playwright tests
+        run: |
+          cd e2e
+          npx playwright test
 
-    - name: Upload E2E reports
-      uses: actions/upload-artifact@v4
-      with:
-        name: e2e-playwright-report
-        path: |
-          e2e/playwright-report/
-          e2e/test-results/
-
+      - name: Upload E2E reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-playwright-report
+          path: |
+            e2e/playwright-report/
+            e2e/test-results/
