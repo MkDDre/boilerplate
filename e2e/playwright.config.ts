@@ -1,3 +1,4 @@
+/// <reference types="node" />
 import { defineConfig, devices } from '@playwright/test';
 
 /**
@@ -24,8 +25,8 @@ export default defineConfig({
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
     ['html', { open: 'never' }],
-],  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
-    use: {
+  ],  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+  use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL:
       process.env.NODE_ENV === undefined ||
@@ -82,3 +83,8 @@ export default defineConfig({
   //   reuseExistingServer: !process.env.CI,
   // },
 });
+
+// "compilerOptions": {
+//   "types": ["node", "@playwright/test"],
+//   // other options...
+// }
