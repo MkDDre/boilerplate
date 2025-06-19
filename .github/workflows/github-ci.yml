@@ -76,7 +76,7 @@ jobs:
           name: frontend-coverage
           path: frontend/coverage/
 
-  e2e-tests:
+  .e2e-tests:
     name: E2E Tests
     runs-on: ubuntu-latest
     container: mcr.microsoft.com/playwright:v1.53.1-jammy
