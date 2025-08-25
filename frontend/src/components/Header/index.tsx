@@ -1,18 +1,22 @@
-import * as React from "react"
+import * as React from 'react';
 
 export type HeaderProps = {
-  title: string
-  version?: number
-  handleHeaderClick?: () => void
-}
+  title: string;
+  version?: number;
+  handleHeaderClick?: () => void;
+};
 
-const Header: React.FC<HeaderProps> = ({ title, version, handleHeaderClick }) => {
-  const [menuPrinted, setMenuPrinted] = React.useState(false)
+const Header: React.FC<HeaderProps> = ({
+  title,
+  version,
+  handleHeaderClick,
+}) => {
+  const [menuPrinted, setMenuPrinted] = React.useState(false);
 
   const handleClick = () => {
-    setMenuPrinted((v) => !v)
-    handleHeaderClick?.()
-  }
+    setMenuPrinted((v) => !v);
+    handleHeaderClick?.();
+  };
 
   return (
     <header className="bg-primary text-primary-foreground">
@@ -23,7 +27,7 @@ const Header: React.FC<HeaderProps> = ({ title, version, handleHeaderClick }) =>
           aria-label="Toggle header message"
         >
           {menuPrinted ? `${title}... and rarely do we hate it!` : title}
-          {typeof version !== "undefined" && (
+          {typeof version !== 'undefined' && (
             <span className="ml-2 align-middle text-sm font-medium opacity-80">
               v{version}
             </span>
@@ -31,7 +35,7 @@ const Header: React.FC<HeaderProps> = ({ title, version, handleHeaderClick }) =>
         </h1>
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

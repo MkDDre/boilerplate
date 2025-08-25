@@ -1,10 +1,10 @@
-/// <reference types="vitest/config" />
+// / <reference types="vitest/config" />
 
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
-import checker from 'vite-plugin-checker'
-import tailwind from '@tailwindcss/vite'
-import path from 'node:path' // ✅ ajout
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react-swc';
+import checker from 'vite-plugin-checker';
+import tailwind from '@tailwindcss/vite';
+import path from 'node:path'; // ✅ ajout
 
 export default defineConfig({
   test: {
@@ -27,4 +27,4 @@ export default defineConfig({
       },
     },
   },
-})
+});

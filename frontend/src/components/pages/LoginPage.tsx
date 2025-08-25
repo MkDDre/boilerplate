@@ -1,30 +1,30 @@
 // src/components/pages/LoginPage.tsx
-import { useState, SyntheticEvent, useContext } from "react"
-import { useNavigate } from "react-router-dom"
-import { UserContextType } from "../../types"
-import { UserContext } from "../../contexts/UserContext"
+import { useState, SyntheticEvent, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { UserContextType } from '../../types';
+import { UserContext } from '../../contexts/UserContext';
 
 // shadcn/ui
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 
 const LoginPage = () => {
-  const { loginUser }: UserContextType = useContext(UserContext)
-  const navigate = useNavigate()
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
+  const { loginUser }: UserContextType = useContext(UserContext);
+  const navigate = useNavigate();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSubmit = async (e: SyntheticEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      await loginUser({ username, password })
-      navigate("/")
+      await loginUser({ username, password });
+      navigate('/');
     } catch (err) {
-      console.error("LoginPage::error: ", err)
+      console.error('LoginPage::error: ', err);
     }
-  }
+  };
 
   return (
     <section className="py-8">
@@ -74,7 +74,7 @@ const LoginPage = () => {
         </Card>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default LoginPage
+export default LoginPage;

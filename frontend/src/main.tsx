@@ -1,13 +1,12 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './index.css'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
 
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import App from './components/App'
-import HomePage from './components/pages/HomePage'
-import LoginPage from './components/pages/LoginPage'
-import { UserContextProvider } from './contexts/UserContext'
-
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import App from './components/App';
+import HomePage from './components/pages/HomePage';
+import LoginPage from './components/pages/LoginPage';
+import { UserContextProvider } from './contexts/UserContext';
 
 const router = createBrowserRouter([
   {
@@ -18,7 +17,7 @@ const router = createBrowserRouter([
       { path: 'login', element: <LoginPage /> },
     ],
   },
-])
+]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -28,4 +27,4 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       </UserContextProvider>
     </div>
   </React.StrictMode>,
-)
+);

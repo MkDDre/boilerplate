@@ -9,8 +9,8 @@ const HomePage = () => {
           </h1>
 
           <p className="mt-4 max-w-2xl text-base md:text-lg text-muted-foreground">
-            Transforme ton potentiel athlétique avec une préparation physique sur
-            mesure. Excellence, performance et progression garanties.
+            Transforme ton potentiel athlétique avec une préparation physique
+            sur mesure. Excellence, performance et progression garanties.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -31,21 +31,27 @@ const HomePage = () => {
           <div className="mt-12 grid grid-cols-3 max-w-md text-center">
             <div>
               <div className="text-2xl font-bold text-primary">+100</div>
-              <div className="text-xs text-muted-foreground">Athlètes accompagnés</div>
+              <div className="text-xs text-muted-foreground">
+                Athlètes accompagnés
+              </div>
             </div>
             <div>
               <div className="text-2xl font-bold text-primary">5+</div>
-              <div className="text-xs text-muted-foreground">Années d&apos;expérience</div>
+              <div className="text-xs text-muted-foreground">
+                Années d&apos;expérience
+              </div>
             </div>
             <div>
               <div className="text-2xl font-bold text-primary">95%</div>
-              <div className="text-xs text-muted-foreground">Satisfaction client</div>
+              <div className="text-xs text-muted-foreground">
+                Satisfaction client
+              </div>
             </div>
           </div>
         </div>
       </section>
     </main>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;

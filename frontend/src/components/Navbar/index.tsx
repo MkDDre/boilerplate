@@ -1,5 +1,5 @@
 // src/components/Navbar/index.tsx
-import * as React from "react"
+import * as React from 'react';
 
 // Petites icônes inline (pour éviter d'ajouter une lib d'icônes)
 const IconInstagram = (props: React.SVGProps<SVGSVGElement>) => (
@@ -8,12 +8,12 @@ const IconInstagram = (props: React.SVGProps<SVGSVGElement>) => (
     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" strokeWidth="2" />
     <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" />
   </svg>
-)
+);
 const IconYoutube = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
     <path d="M23.5 6.2a4 4 0 0 0-2.8-2.8C18.9 3 12 3 12 3s-6.9 0-8.7.4A4 4 0 0 0 .5 6.2 41 41 0 0 0 0 12a41 41 0 0 0 .5 5.8 4 4 0 0 0 2.8 2.8C5.1 21 12 21 12 21s6.9 0 8.7-.4a4 4 0 0 0 2.8-2.8A41 41 0 0 0 24 12a41 41 0 0 0-.5-5.8zM9.75 15.5v-7l6 3.5-6 3.5z" />
   </svg>
-)
+);
 
 const NavBar: React.FC = () => {
   return (
@@ -26,10 +26,26 @@ const NavBar: React.FC = () => {
 
         {/* Liens centraux (desktop) */}
         <ul className="hidden md:flex items-center gap-8 text-sm">
-          <li><a href="#" className="hover:text-gray-300 transition-colors">Accueil</a></li>
-          <li><a href="#" className="hover:text-gray-300 transition-colors">Prestations</a></li>
-          <li><a href="#" className="hover:text-gray-300 transition-colors">Communauté</a></li>
-          <li><a href="#" className="hover:text-gray-300 transition-colors">Contact</a></li>
+          <li>
+            <a href="#" className="hover:text-gray-300 transition-colors">
+              Accueil
+            </a>
+          </li>
+          <li>
+            <a href="#" className="hover:text-gray-300 transition-colors">
+              Prestations
+            </a>
+          </li>
+          <li>
+            <a href="#" className="hover:text-gray-300 transition-colors">
+              Communauté
+            </a>
+          </li>
+          <li>
+            <a href="#" className="hover:text-gray-300 transition-colors">
+              Contact
+            </a>
+          </li>
         </ul>
 
         {/* Icônes + CTA */}
@@ -57,7 +73,7 @@ const NavBar: React.FC = () => {
         </div>
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;
