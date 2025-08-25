@@ -1,6 +1,6 @@
 services:
   frontend:
-    container_name: frontend-easy-loc
+    container_name: frontend-dev
     image: frontend-prod
     build:
       context: ./frontend
@@ -10,7 +10,7 @@ services:
       - api
 
   api:
-    container_name: api-easy-loc
+    container_name: api-dev
     image: api-prod
     build: ./api
     ports:
@@ -21,16 +21,16 @@ services:
 
   db:
     image: postgres:latest
-    container_name: db-easy-loc
+    container_name: db-dev
     environment:
-      POSTGRES_DB: easyloc_db
-      POSTGRES_USER: easyloc_user
-      POSTGRES_PASSWORD: easyloc_pwd
+      POSTGRES_DB: projetdev
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pwd
     ports:
       - "5446:5432"
 
   reverse-proxy:
-    container_name: reverse-proxy-easy-loc
+    container_name: reverse-proxy-dev
     image: nginx:alpine
     ports:
       - 80:80
@@ -41,7 +41,7 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf
 
   e2e:
-    container_name: e2e-easy-loc
+    container_name: e2e-dev
     image: e2e-prod
     build: ./e2e
     environment:
