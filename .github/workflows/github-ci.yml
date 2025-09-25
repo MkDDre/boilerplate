@@ -16,24 +16,19 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Setup Java 21 (Corretto)
+      - name: Setup Java 21 (Corretto) + Cache Maven
         uses: actions/setup-java@v4
         with:
-          distribution: 'corretto'
+          distribution: corretto
           java-version: '21'
-
-      - name: Cache Maven repository
-        uses: actions/cache@v3
-        with:
-          path: ~/.m2/repository
-          key: maven-${{ hashFiles('api/pom.xml') }}
+          cache: maven
 
       - name: Run API tests
         run: |
           cd api
-          mvn clean test
+          mvn -q -B clean test
 
       - name: Upload API test reports
         uses: actions/upload-artifact@v4
@@ -50,24 +45,27 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
 
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        with:
-          path: frontend/node_modules
-          key: npm-${{ hashFiles('frontend/package-lock.json') }}
+      - name: Install deps (CI)
+        working-directory: frontend
+        run: npm ci
 
-      - name: Run frontend tests
+      - name: Lint
+        working-directory: frontend
+        run: npm run lint
+
+      - name: Unit tests + coverage
+        working-directory: frontend
         run: |
-          cd frontend
-          npm install
-          npm run lint
+          # garde ta commande existante si tu as "coverage" dans package.json
           npm run coverage
 
       - name: Upload frontend coverage
@@ -93,7 +91,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup environment and apps
         run: |
@@ -110,11 +108,11 @@ jobs:
           sleep 30
           if ! ps -p $SERVER_PID > /dev/null; then echo "Spring Boot failed to start"; cat spring.log; exit 1; fi
           cd ../frontend
-          npm install
+          npm ci
           npm run dev &
           sleep 30
           cd ../e2e
-          npm install
+          npm ci
 
       - name: Run Playwright tests
         run: |
