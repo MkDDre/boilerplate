@@ -1,36 +1,24 @@
-// eslint.config.js
+// eslint.config.js (compatible ESLint 9)
 import js from '@eslint/js';
 import globals from 'globals';
 import tseslint from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
 import reactHooks from 'eslint-plugin-react-hooks';
 import prettier from 'eslint-plugin-prettier';
-import google from 'eslint-config-google';
 import reactRefresh from 'eslint-plugin-react-refresh';
 
 export default [
-  // Ignorer certains dossiers/fichiers
-  { ignores: ['dist', '.eslintrc.cjs'] },
+  { ignores: ['dist', 'build', 'coverage', 'node_modules', '.eslintrc.cjs'] },
 
-  // Base JS recommandée
   js.configs.recommended,
 
-  // Google style guide
-  google,
-
-  // TypeScript recommandé
+  // TypeScript recommandé (sans type-checking pour rapidité)
   {
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
       parser: tsParser,
-      parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-      },
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-      },
+      parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
+      globals: { ...globals.browser, ...globals.node },
     },
     plugins: { '@typescript-eslint': tseslint },
     rules: {
@@ -38,16 +26,13 @@ export default [
     },
   },
 
-  // React hooks + Prettier + React Refresh
+  // React Hooks + Prettier + React Refresh
   {
     files: ['**/*.{ts,tsx,js,jsx}'],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-      },
+      globals: { ...globals.browser, ...globals.node },
     },
     plugins: {
       'react-hooks': reactHooks,
